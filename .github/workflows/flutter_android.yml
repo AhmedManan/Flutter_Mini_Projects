@@ -1,0 +1,46 @@
+name: Flutter CI For Android
+
+on:
+  push:
+    branches: [ main ] # Triggers on push to the main branch
+  pull_request:
+    branches: [ main ] # Triggers on pull requests targeting main
+
+jobs:
+  build:
+    name: Build & Test Flutter App
+    runs-on: ubuntu-latest # Runner environment
+
+    steps:
+      # Checkout Repository
+      - uses: actions/checkout@v4
+      
+      # Setup Flutter SDK
+      - name: Set up Flutter
+        # the community-maintained 'subosito/flutter-action'
+        uses: subosito/flutter-action@v2
+        with:
+          channel: 'stable' # or 'beta', 'dev'
+
+      # Dependencies
+      - name: Install dependencies
+        run: flutter pub get
+
+      # Run Tests
+      - name: Run tests
+        run: flutter test
+
+      # Run Analyze/Linting (Optional, but recommended)
+      - name: Analyze code
+        run: flutter analyze
+
+      # Build Artifact (Example: Android APK)
+      - name: Build APK
+        run: flutter build apk --release
+
+      # Upload Artifact (Optional: to save the build file)
+      - name: Upload APK Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk

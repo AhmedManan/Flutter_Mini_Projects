@@ -43,7 +43,15 @@ class homeActivity extends StatelessWidget{
 
       ),
       body: Text('Manan'),
-      // drawer: ,
+      drawer: Drawer(
+        child: ListView(
+          children: [
+            DrawerHeader(child: Text('Manan')),
+            ListTile(leading: Icon(Icons.account_box_outlined), title: Text('data'),),
+            ListTile(leading: Icon(Icons.account_box_outlined),title: Text('bangla'),)
+          ],
+        )
+      ),
       // endDrawer: ,
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0,
