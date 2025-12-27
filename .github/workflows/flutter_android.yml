@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest # Runner environment
     defaults: # Set default working directory for all steps in this job
       run:
-        working-directory: ./bangla_kids_poem/
+        working-directory: ./currency_converter/
 
     steps:
       # Checkout Repository
