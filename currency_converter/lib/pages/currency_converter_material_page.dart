@@ -1,7 +1,24 @@
 import 'package:flutter/material.dart';
 
-class CurrencyConverterMaterialPage extends StatelessWidget {
+class CurrencyConverterMaterialPage extends StatefulWidget {
   const CurrencyConverterMaterialPage({super.key});
+
+  @override
+  State<CurrencyConverterMaterialPage> createState() =>
+      _CurrencyConverterMaterialPageState();
+}
+
+class _CurrencyConverterMaterialPageState
+    extends State<CurrencyConverterMaterialPage> {
+  // variables and controller outside the build method
+  double result = 0;
+  final TextEditingController textEditingController = TextEditingController();
+
+  @override
+  void dispose() {
+    textEditingController.dispose(); // Good practice to clean up memory
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +57,7 @@ class CurrencyConverterMaterialPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "0",
+              "BDT ${result.toStringAsFixed(2)}",
               style: TextStyle(
                 fontSize: 30,
                 fontWeight: FontWeight.bold,
@@ -50,6 +67,7 @@ class CurrencyConverterMaterialPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(15.0),
               child: TextField(
+                controller: textEditingController,
                 decoration: InputDecoration(
                   hintText: 'Enter amount in BDT',
                   hintStyle: TextStyle(color: Colors.black),
@@ -69,7 +87,11 @@ class CurrencyConverterMaterialPage extends StatelessWidget {
               padding: const EdgeInsets.all(15.0),
               child: ElevatedButton(
                 onPressed: () {
-                  debugPrint('Convert button pressed');
+                  setState(() {
+                    result = double.parse(textEditingController.text) * 122.22;
+                  });
+                  // debugPrint(textEditingController.text);
+                  // debugPrint('Convert button pressed');
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: (Colors.deepOrange),
