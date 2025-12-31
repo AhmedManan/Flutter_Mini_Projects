@@ -69,7 +69,7 @@ class _CurrencyConverterMaterialPageState
               child: TextField(
                 controller: textEditingController,
                 decoration: InputDecoration(
-                  hintText: 'Enter amount in BDT',
+                  hintText: 'Enter amount in USD',
                   hintStyle: TextStyle(color: Colors.black),
                   prefixIcon: Icon(Icons.monetization_on_outlined),
                   prefixIconColor: Colors.black,
